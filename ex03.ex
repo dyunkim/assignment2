@@ -55,7 +55,14 @@ defmodule Ex03 do
 
   """
 
-  def odd_even . . . "your code"
+  def odd_even(list) do
+      Enum.map(list, fn(x) ->
+          cond do
+              rem(x, 2) == 0 -> :even
+              rem(x, 2) == 1 -> :odd
+          end
+      end)
+  end
 
 
   ##############################################################################
@@ -77,7 +84,9 @@ defmodule Ex03 do
 
   """
 
-  def list_contains . .. "your code"
+  def list_contains(list, number) do
+     Enum.member?(list, number)
+  end
 
   ##############################################################################
   # 3.3:  5 points #
@@ -101,7 +110,9 @@ defmodule Ex03 do
 
   """
 
-  def list_equal . . . "your code"
+  def list_equal(list1, list2) do
+      false
+  end
 
 
 
@@ -149,8 +160,27 @@ defmodule Ex03 do
   Think a little about a nice way to lay this code out.
   """
 
-  def won . . . "your code"
+  def won(moves) do
+      #vertical cases
+      cond do
 
+
+      end
+
+      end
+  end
+
+  def check(type, index) do
+      cond do
+          type == :vertical ->
+              if index == index + 3 && index == index + 6 do
+                  index
+              else
+                  false
+              end
+          type == :horizontal
+      end
+  end
 
   ###########################
   # IGNORE FROM HERE TO END #
