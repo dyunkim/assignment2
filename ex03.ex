@@ -55,14 +55,14 @@ defmodule Ex03 do
 
   """
 
-  def odd_even(list) do
-      Enum.map(list, fn(x) ->
-          cond do
-              rem(x, 2) == 0 -> :even
-              rem(x, 2) == 1 -> :odd
-          end
-      end)
-  end
+def odd_even(list) do
+    Enum.map(list, fn(x) ->
+        cond do
+            rem(x, 2) == 0 -> :even
+            rem(x, 2) == 1 -> :odd
+        end
+    end)
+end
 
 
   ##############################################################################
@@ -109,10 +109,24 @@ defmodule Ex03 do
       false
 
   """
-
-  def list_equal(list1, list2) do
-      false
+#
+# def list_equal(list1, list2) do
+#   cond do
+#     Enum.count(list1) != Enum.count(list2) -> false
+#     Enum.count(list1) == 0 -> true
+#     h1 == h2 -> list_equal(t1, t2)
+#     h1 != h2 -> false
+#
+#   end
+# end
+def list_equal(list1, list2) do
+  cond do
+    length(list1) != length(list2) -> false
+    length(list1) == 0 -> true
+    Enum.at(list1, 0) == Enum.at(list2, 0) -> list_equal(Enum.drop(list1, 1), Enum.drop(list2, 1))
+    true -> false
   end
+end
 
 
 
@@ -160,27 +174,28 @@ defmodule Ex03 do
   Think a little about a nice way to lay this code out.
   """
 
-  def won(moves) do
-      #vertical cases
-      cond do
+def won(moves) do
+  false
+  cond do
+    #vertical cases
+    elem(moves, 0) == elem(moves, 3) && elem(moves, 0) == elem(moves, 6) -> elem(moves, 0)
+    elem(moves, 1) == elem(moves, 4) && elem(moves, 0) == elem(moves, 7) -> elem(moves, 1)
+    elem(moves, 2) == elem(moves, 5) && elem(moves, 0) == elem(moves, 8) -> elem(moves, 2)
 
+    #horizontal cases
+    elem(moves, 0) == elem(moves, 1) && elem(moves, 0) == elem(moves, 2) -> elem(moves, 0)
+    elem(moves, 3) == elem(moves, 4) && elem(moves, 0) == elem(moves, 5) -> elem(moves, 3)
+    elem(moves, 6) == elem(moves, 7) && elem(moves, 0) == elem(moves, 8) -> elem(moves, 6)
 
-      end
+    #diagonal cases
+    elem(moves, 0) == elem(moves, 4) && elem(moves, 0) == elem(moves, 8) -> elem(moves, 0)
+    elem(moves, 2) == elem(moves, 4) && elem(moves, 0) == elem(moves, 6) -> elem(moves, 2)
 
-      end
+    #no winner case
+    true -> false
   end
+end
 
-  def check(type, index) do
-      cond do
-          type == :vertical ->
-              if index == index + 3 && index == index + 6 do
-                  index
-              else
-                  false
-              end
-          type == :horizontal
-      end
-  end
 
   ###########################
   # IGNORE FROM HERE TO END #
